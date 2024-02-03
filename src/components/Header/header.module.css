@@ -1,0 +1,42 @@
+.header {
+  height: 60px;
+  background-color: #2e2e30;
+}
+.container {
+  height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 24px;
+  color: white;
+  font-weight: 600;
+}
+.button {
+  height: 35px;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  color: #000000;
+  font-size: 16px;
+  transition: 0.3s ease-in;
+}
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 24px;
+}
+.bar {
+  width: 25px;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+}
