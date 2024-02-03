@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Auth from './pages/Auth';
 import Profile from './pages/Profile';
-import Header from './components/Header/Header';
-import { Routes, Router, Route, Switch, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     let stringValue = localStorage.getItem('user');

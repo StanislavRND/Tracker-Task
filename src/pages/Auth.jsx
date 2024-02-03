@@ -2,25 +2,30 @@ import React from 'react';
 import imgLogo from '../img/img-01.png';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleClick = () => {
     const data = { email, password };
     axios
       .post('http://79.137.194.19/jwt-auth/get-token/', data)
       .then((response) => {
+        console.log(response);
         localStorage.setItem('access', response.data.access);
         localStorage.setItem('refresh', response.data.refresh);
         localStorage.setItem('user', response.status);
+        navigate("/profile");
       })
       .catch((error) => {
         console.error(error);
       });
     console.log(typeof localStorage.getItem('user'));
   };
+
   return (
     <section className="section__auth">
       <div className="authorization">

@@ -7,19 +7,21 @@ export const Profile = () => {
   const headers = { Authorization: `Bearer ${localStorage.getItem('access')}` };
 
   useEffect(() => {
-    axios.post('http://79.137.194.19/jwt-auth/user-info/', { headers: headers }).then((res) => {
-      setData(res.data);
-      
+    axios.post('http://79.137.194.19/jwt-auth/user-info/', { headers: headers }).then(({ data }) => {
+      console.log(data);
+      setData(data);
+      localStorage.setItem('user', JSON.stringify(data));
     });
   }, []);
-  console.log(localStorage.getItem('user'));
+
+
   return (
     <section className="profile">
       <div className="profile__container">
         <div>Профиль</div>
         <div>Фио</div>
         <div className="project">
-          <div className="title">{data.id}</div>
+          <div className="title">{data.id}</div>  
           <p>Описание</p>
           <div>Пользователь</div>
           <div>Дата создания</div>
