@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Auth from './pages/Auth';
-import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import User from './pages/User';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    let stringValue = localStorage.getItem('user');
-    let numberValue = parseInt(stringValue, 10);
-
-    if (numberValue === 200) {
-      setIsAuthenticated(true);
-    }
-  }, []);
   return (
-    <div className="App">
+    <div className="wrapper">
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/profile" /> : <Auth />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Auth />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </div>
   );

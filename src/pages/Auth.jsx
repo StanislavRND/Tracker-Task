@@ -1,30 +1,13 @@
 import React from 'react';
 import imgLogo from '../img/img-01.png';
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { sendingDataForm } from '../API/TaskService';
 
 export const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    const data = { email, password };
-    axios
-      .post('http://79.137.194.19/jwt-auth/get-token/', data)
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem('access', response.data.access);
-        localStorage.setItem('refresh', response.data.refresh);
-        localStorage.setItem('user', response.status);
-        navigate("/profile");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    console.log(typeof localStorage.getItem('user'));
-  };
 
   return (
     <section className="section__auth">
@@ -33,7 +16,15 @@ export const Auth = () => {
           <div className="authorization__img">
             <img src={imgLogo} alt="logo" />
           </div>
-          <form className="authorization__form" action="" method="post" id="form__id">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendingDataForm(email, password, navigate);
+            }}
+            className="authorization__form"
+            action=""
+            method="post"
+            id="form__id">
             <div className="form__title">Авторизация</div>
             <div className="form__input-block">
               <div className="form__input login__input">
@@ -44,6 +35,7 @@ export const Auth = () => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="form__input pass__input">
@@ -54,10 +46,11 @@ export const Auth = () => {
                   placeholder="Пароль"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
-            <button onClick={handleClick} type="button" className="form__button">
+            <button type="submit" className="form__button">
               Войти
             </button>
           </form>

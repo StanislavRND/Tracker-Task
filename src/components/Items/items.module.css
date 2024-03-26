@@ -1,0 +1,17 @@
+.items {
+  padding: 30px 0;
+}
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+.empty__state {
+  text-align: center;
+  padding: 30px 0;
+}
+.empty__state > div {
+  font-size: 32px;
+  font-weight: 500;
+}
